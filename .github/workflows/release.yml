@@ -52,7 +52,7 @@ jobs:
           yarn pack --out "lichtblick-asam-osi-types-${VERSION}.tgz"
 
       - name: Publish to NPM
-        run: npm publish lichtblick-asam-osi-types-*.tgz --provenance --access public
+        run: npm publish lichtblick-asam-osi-types-*.tgz --provenance --access public --dry-run
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
 
