@@ -10,7 +10,7 @@ jobs:
     name: publish
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       id-token: write
     steps:
       - name: Checkout Repository
@@ -55,3 +55,9 @@ jobs:
         run: npm publish lichtblick-asam-osi-types-*.tgz --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+
+      - name: Upload package to GitHub release assets
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.event.release.tag_name }}
+          files: lichtblick-asam-osi-types-*.tgz
